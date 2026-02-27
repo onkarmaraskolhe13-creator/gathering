@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gathering - Social Media Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Gathering</div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showFeed()" class="nav-link">Feed</a></li>
+                <li><a href="#" onclick="showProfile()" class="nav-link">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link logout-btn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Feed Section -->
+        <div id="feed-section" class="section active">
+            <!-- Create Post Section -->
+            <div class="create-post">
+                <div class="post-header">
+                    <img id="user-avatar" src="https://via.placeholder.com/50" alt="User Avatar" class="avatar">
+                    <div class="post-input-group">
+                        <input type="text" id="post-text" placeholder="What's on your mind?" class="post-input">
+                        <div class="post-actions">
+                            <input type="file" id="image-input" accept="image/*" style="display: none;">
+                            <button class="post-btn" onclick="document.getElementById('image-input').click()">📷
+                                Photo</button>
+                            <button class="post-btn"
+                                onclick="document.getElementById('link-input-modal').style.display='block'">🔗
+                                Link</button>
+                            <button class="post-btn publish-btn" onclick="createPost()">Publish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posts Feed -->
+            <div id="posts-container" class="posts-feed">
+                <!-- Posts will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="section">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img id="profile-avatar" src="https://via.placeholder.com/150" alt="Profile Avatar"
+                        class="profile-avatar">
+                    <div class="profile-info">
+                        <h2 id="profile-name">User Name</h2>
+                        <p id="profile-bio">Bio goes here</p>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-number" id="profile-posts">0</span>
+                                <span class="stat-label">Posts</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" id="profile-followers">0</span>
+                                <span class="stat-label">Followers</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" id="profile-following">0</span>
+                                <span class="stat-label">Following</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="edit-profile-btn" onclick="editProfile()">Edit Profile</button>
+            </div>
+
+            <!-- User Posts -->
+            <div class="user-posts">
+                <h3>Your Posts</h3>
+                <div id="user-posts-container" class="posts-grid">
+                    <!-- User posts will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Link Input -->
+    <div id="link-input-modal" class="modal">
+        <div class="modal-content">
+            <span class="close"
+                onclick="document.getElementById('link-input-modal').style.display='none'">&times;</span>
+            <h3>Add Link</h3>
+            <input type="url" id="link-input" placeholder="Enter URL">
+            <button class="modal-btn" onclick="addLink()">Add Link</button>
+        </div>
+    </div>
+
+    <!-- Modal for Edit Profile -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close"
+                onclick="document.getElementById('edit-profile-modal').style.display='none'">&times;</span>
+            <h3>Edit Profile</h3>
+            <input type="text" id="edit-name" placeholder="Name">
+            <textarea id="edit-bio" placeholder="Bio"></textarea>
+            <button class="modal-btn" onclick="saveProfile()">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Modal for Comments -->
+    <div id="comments-modal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeCommentsModal()">&times;</span>
+            <h3>Comments</h3>
+            <div id="comments-list" class="comments-list">
+                <!-- Comments will be loaded here -->
+            </div>
+            <div class="comment-input-group">
+                <input type="text" id="comment-input" placeholder="Write a comment...">
+                <button class="modal-btn" onclick="addComment()">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal active">
+        <div class="modal-content auth-modal">
+            <h2>Welcome to Gathering</h2>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuth('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuth('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form active">
+                <input type="email" id="login-email" placeholder="Email">
+                <input type="password" id="login-password" placeholder="Password">
+                <button class="auth-btn" onclick="login()">Login</button>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup-form" class="auth-form">
+                <input type="text" id="signup-name" placeholder="Full Name">
+                <input type="email" id="signup-email" placeholder="Email">
+                <input type="password" id="signup-password" placeholder="Password">
+                <input type="password" id="signup-confirm" placeholder="Confirm Password">
+                <button class="auth-btn" onclick="signup()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
